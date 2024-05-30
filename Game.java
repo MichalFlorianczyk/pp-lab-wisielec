@@ -14,7 +14,7 @@ public class Game {
         this.guessedWord = new char[word.length()];
         Arrays.fill(guessedWord, '_');
         this.guessedLetters = new HashSet<>();
-        this.attemptsLeft = attempts; // or different depending on difficulty
+        this.attemptsLeft = attempts;
         this.gamesLost = 0;
         this.gamesWon = 0;
         this.attemptsToWin = 0;

@@ -1,7 +1,51 @@
-pomidor
-jablko
-limonka
-cytryna
-mango
+banan
 pomarancza
-ogorek
+cytryna
+limonka
+truskawka
+malina
+jagoda
+winogrono
+ananas
+arbuz
+melon
+mango
+kiwi
+gruszka
+brzoskwinia
+morela
+granat
+grejpfrut
+papaja
+awokado
+kiwano
+litchi
+mandarynka
+klementynka
+karambola
+kokos
+durian
+ziemniak
+marchewka
+cebula
+czosnek
+pomidor
+papryka
+kalafior
+kapusta
+szpinak
+rukola
+rzodkiewka
+burak
+cukinia
+dynia
+zielony groszek
+fasolka szparagowa
+kukurydza
+seler naciowy
+seler korzeniowy
+por
+brukselka
+cykoria
+kalarepa
+chrzan

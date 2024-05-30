@@ -59,13 +59,11 @@ public class UserInterface {
             System.out.println("Gratulacje! Wygrałeś!");
             totalGamesWon++;
             totalAttemptsToWin += attempts - game.getAttemptsLeft();
-
         } else {
             totalGamesLost++;
             System.out.println("Przegrałeś. Słowo to: " + word);
         }
         totalGamesPlayed++;
-
     }
 
     private int getAttemptsForDifficulty(int difficultyChoice) {
@@ -91,7 +89,7 @@ public class UserInterface {
         if (choice == 1) {
             addWord();
         } else if (choice == 2) {
-            removeWord();
+            removeWord(null);
         } else if (choice == 3) {
             editWord();
         } else if (choice == 4) {
@@ -111,9 +109,10 @@ public class UserInterface {
     }
 
     public boolean removeWord(String word) {
+        List<String> words = wordRepository.getWordList();
         boolean removed = words.remove(word);
         if (removed) {
-            saveWords();
+            wordRepository.saveWords();
         }
         return removed;
     }
