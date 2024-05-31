@@ -2,88 +2,73 @@ import java.io.*;
 import java.util.*;
 
 public class WordRepository {
-    private List<String> words; // Lista słów
+    private List<String> words;
 
     public WordRepository() {
-        words = new ArrayList<>(); // Inicjalizacja listy słów
-        loadWords(); // Załadowanie słów z pliku
+        words = new ArrayList<>();
+        loadWords();
     }
 
-    // Metoda ładująca słowa z pliku
     private List<String> loadWords() {
-        List<String> loadedWords = new ArrayList<>(); // Tymczasowa lista do przechowywania załadowanych słów
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/words.txt"))) { // Otwieranie
-                                                                                                       // pliku do
-                                                                                                       // odczytu
+        List<String> loadedWords = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/words.txt"))) {
             String line;
-            while ((line = br.readLine()) != null) { // Odczyt linii z pliku
-                loadedWords.add(line.trim()); // Dodanie odczytanego słowa do listy po przycięciu białych znaków
+            while ((line = br.readLine()) != null) {
+                loadedWords.add(line.trim());
             }
         } catch (IOException e) {
-            e.printStackTrace(); // Obsługa wyjątku IO
+            e.printStackTrace();
         }
-        words = loadedWords; // Przypisanie załadowanych słów do pola klasy
-        return loadedWords; // Zwrócenie załadowanych słów (choć nie jest to używane)
+        words = loadedWords;
+        return loadedWords;
     }
 
-    // Metoda zwracająca losowe słowo z listy
     public String getRandomWord() {
-        Random random = new Random(); // Obiekt klasy Random do generowania losowych liczb
-        return words.get(random.nextInt(words.size())); // Zwrócenie losowego słowa z listy
+        Random random = new Random();
+        return words.get(random.nextInt(words.size()));
     }
 
-    // Metoda dodająca nowe słowo do listy i zapisująca je do pliku
     public void addWord(String word) {
-        words.add(word); // Dodanie nowego słowa do listy
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/words.txt", true))) { // Otwieranie
-                                                                                                             // pliku do
-                                                                                                             // zapisu w
-                                                                                                             // trybie
-                                                                                                             // dopisywania
-            bw.newLine(); // Dodanie nowej linii
-            bw.write(word); // Zapisanie nowego słowa
-            bw.newLine(); // Dodanie nowej linii
+        words.add(word);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/words.txt", true))) {
+            bw.newLine();
+            bw.write(word);
+            bw.newLine();
         } catch (IOException e) {
-            e.printStackTrace(); // Obsługa wyjątku IO
+            e.printStackTrace();
         }
     }
 
-    // Metoda usuwająca słowo z listy i zapisująca zmiany do pliku
     public boolean removeWord(String word) {
-        if (words.remove(word)) { // Usunięcie słowa z listy
-            saveWords(); // Zapisanie zmian do pliku
-            return true; // Zwrócenie wartości true w przypadku powodzenia
+        if (words.remove(word)) {
+            saveWords();
+            return true;
         }
-        return false; // Zwrócenie wartości false w przypadku niepowodzenia
+        return false;
     }
 
-    // Metoda edytująca istniejące słowo i zapisująca zmiany do pliku
     public boolean editWord(String oldWord, String newWord) {
-        if (words.contains(oldWord)) { // Sprawdzenie, czy lista zawiera stare słowo
-            int index = words.indexOf(oldWord); // Znalezienie indeksu starego słowa
-            words.set(index, newWord); // Zamiana starego słowa na nowe
-            saveWords(); // Zapisanie zmian do pliku
-            return true; // Zwrócenie wartości true w przypadku powodzenia
+        if (words.contains(oldWord)) {
+            int index = words.indexOf(oldWord);
+            words.set(index, newWord);
+            saveWords();
+            return true;
         }
-        return false; // Zwrócenie wartości false w przypadku niepowodzenia
+        return false;
     }
 
-    // Metoda zwracająca kopię listy słów
     public List<String> getWordList() {
-        return new ArrayList<>(words); // Zwrócenie nowej listy zawierającej słowa (kopia)
+        return new ArrayList<>(words);
     }
 
-    // Metoda zapisująca wszystkie słowa do pliku
     void saveWords() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/words.txt"))) { // Otwieranie
-                                                                                                       // pliku do
-                                                                                                       // zapisu
-            for (String word : words) { // Iteracja przez wszystkie słowa na liście
-                bw.write(word); // Zapisanie słowa do pliku
-                bw.newLine(); // Dodanie nowej linii po każdym słowie
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/words.txt"))) {
+            for (String word : words) {
+                bw.write(word);
+                bw.newLine();
             }
         } catch (IOException e) {
-            e.printStackTrace(); // Obsługa wyjątku IO
+            e.printStackTrace();
         }
     }
 }
